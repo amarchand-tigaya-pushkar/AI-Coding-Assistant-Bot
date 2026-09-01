@@ -6,16 +6,16 @@
 import streamlit as st
 from dotenv import load_dotenv
 import os
-# Import LangChain OpenAI chat model
-from langchain_openai import ChatOpenAI
+# Import LangChain Groq chat model
+from langchain_groq import ChatGroq
 # Import prompt template
 from langchain_core.prompts import ChatPromptTemplate
 # -------------------------------------------------
 # Load API key from .env file
 # -------------------------------------------------
 load_dotenv()
-# Get OpenAI API key
-api_key = os.getenv("OPENAI_API_KEY")
+# Get Groq API key
+api_key = os.getenv("GROQ_API_KEY")
 # -------------------------------------------------
 # Streamlit page setting
 # -------------------------------------------------
@@ -35,13 +35,13 @@ st.write(
 # Check API key
 # -------------------------------------------------
 if not api_key:
- st.error("OpenAI API key not found. Please add it in .env file.")
+ st.error("Groq API key not found. Please add GROQ_API_KEY in .env file.")
  st.stop()
 # -------------------------------------------------
 # Create LLM model
 # -------------------------------------------------
-llm = ChatOpenAI(
- model="gpt-4o-mini",
+llm = ChatGroq(
+ model="openai/gpt-oss-120b",
  temperature=0.2
 )
 # -------------------------------------------------
